@@ -1,0 +1,21 @@
+{
+  "name": "auth-api",
+  "version": "1.0.0",
+  "description": "An authentication API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node -r esm app.js",
+    "dev": "nodemon --exec npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "1.18.2",
+    "nodemon": "1.19.1"
+  },
+  "dependencies": {
+    "esm": "3.2.25",
+    "express": "4.17.1"
+  }
+}
