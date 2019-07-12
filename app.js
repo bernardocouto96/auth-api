@@ -1,9 +1,11 @@
 import express from 'express';
 import connectToDb from './database';
 import startServer from './server';
+import setMiddlewares from './middlewares';
 
 const app = express();
 
+setMiddlewares(app);
 startServer(app);
 connectToDb();
 
