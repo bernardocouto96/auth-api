@@ -1,6 +1,9 @@
 import express from 'express';
+import connectToDb from './database';
 
 const app = express();
+
+connectToDb();
 
 app.get('/login', (req, res) => {
   res.status(200).send('request on endpoint /login');
