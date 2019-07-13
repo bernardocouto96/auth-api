@@ -6,7 +6,12 @@ export const validateSignUpFields = userRequest => {
   const hasPassword = Boolean(R.pathOr('', ['password'], userRequest));
   const hasPhoneNumber = Boolean(!R.isEmpty(R.pathOr([], ['phones'], userRequest)));
 
-  console.log(hasName, hasEmail, hasPassword, hasPhoneNumber);
-
   return hasName && hasEmail && hasPassword && hasPhoneNumber;
+};
+
+export const validateSignInFields = userRequest => {
+  const hasEmail = Boolean(R.pathOr('', ['email'], userRequest));
+  const hasPassword = Boolean(R.pathOr('', ['password'], userRequest));
+
+  return hasEmail && hasPassword;
 };

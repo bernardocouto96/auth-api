@@ -8,3 +8,7 @@ export const dbUri =
 export const port = process.env.PORT || 5000;
 
 export const saltRounds = process.env.SALT_ROUNDS || 12;
+
+export const tokenSecret = process.env.TOKEN_SECRET || 'dev-only-secret';
+
+export const tokenExpirationTime = process.env.TOKEN_EXPIRATION_TIME || 60 * 30;

@@ -11,6 +11,6 @@ const userCredentialsSchema = new Schema(
   }
 );
 
-const UserCredentialsModel = model('Credentials', userCredentialsSchema);
+const UserCredentialsModel = model('credentials', userCredentialsSchema);
 
 export default UserCredentialsModel;

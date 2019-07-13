@@ -1,6 +1,7 @@
-import { saveNewUserCredentials } from './user-credentials.repository';
+import { saveNewUserCredentials, findUserByLogin } from './user-credentials.repository';
 import bcrypt from 'bcrypt';
-import { saltRounds } from '../../../config';
+import jwt from 'jsonwebtoken';
+import { saltRounds, tokenSecret, tokenExpirationTime as expiresIn } from '../../../config';
 
 export const signUpUser = async userCredentials => {
   try {
@@ -18,6 +19,16 @@ export const signUpUser = async userCredentials => {
   }
 };
 
-const hashPassword = password => {
-  return bcrypt.hash(password, saltRounds);
+export const signInUser = async userCredentials => {
+  try {
+    const response = await findUserByLogin(userCredentials.login);
+    const token = await generateToken(response._id);
+    return token;
+  } catch (error) {
+    throw error;
+  }
 };
+
+const hashPassword = password => bcrypt.hash(password, saltRounds);
+
+const generateToken = id => jwt.sign({ id }, tokenSecret, { expiresIn });
