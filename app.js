@@ -1,7 +1,7 @@
 import express from 'express';
-import connectToDb from './database';
-import startServer from './server';
-import setMiddlewares from './middlewares';
+import connectToDb from './src/database';
+import startServer from './src/server';
+import setMiddlewares from './src/middlewares';
 
 const app = express();
 
