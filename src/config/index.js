@@ -5,4 +5,4 @@ export const dbUri =
   `mongodb://${process.env.DB_USERNAME || defaultDbCredentials.username}:${process.env
     .DB_PASSWORD || defaultDbCredentials.password}@ds151007.mlab.com:51007/users-db`;
 
-export const port = process.env.DB_URI || 5000;
+export const port = process.env.PORT || 5000;
