@@ -6,6 +6,6 @@ const routes = new Router();
 routes
   .post('/sign-in', signIn)
   .post('/sign-up', signUp)
-  .get('/:userId', find);
+  .get('/user/:userId', find);
 
 export default routes;
