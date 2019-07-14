@@ -5,8 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "node -r esm app.js",
-    "dev": "nodemon --exec npm start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prettyAndStart": "npm run pretty && npm start",
+    "dev": "nodemon --exec npm run prettyAndStart",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretty": "prettier --write \"./**/*.{js,json}\""
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +24,6 @@
     "jsonwebtoken": "8.5.1",
     "mongoose": "5.6.4",
     "ramda": "0.26.1",
-    "uuid": "^3.3.2"
+    "uuid": "3.3.2"
   }
 }
