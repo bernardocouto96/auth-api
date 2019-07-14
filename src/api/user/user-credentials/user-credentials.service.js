@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import R from 'ramda';
 import { v4 as UUID } from 'uuid';
 import { saveNewUserCredentials, findUserByLogin } from './user-credentials.repository';
 import { saltRounds, tokenSecret, tokenExpirationTime as expiresIn } from '../../../config';
+import ERROR from '../../../constants/errorResponse';
+import errorType from '../../../constants/errorType';
 
 export const signUpUser = async ({ email, password }) => {
   try {
@@ -16,17 +17,17 @@ export const signUpUser = async ({ email, password }) => {
 
     return { userId, token };
   } catch (error) {
-    throw error;
+    throw error.code === errorType.DUPLICATED_ERROR_CODE ? ERROR.DuplicatedEmail : error;
   }
 };
 
 export const signInUser = async ({ email, password }) => {
   try {
     const userCredentials = await findUserByLogin({ login: email });
-    if (!Boolean(userCredentials)) throw new Error('email not found');
+    if (!Boolean(userCredentials)) throw ERROR.InvalidCredentials;
 
     const passwordMatches = await comparePasswords(password, userCredentials.password);
-    if (!passwordMatches) throw new Error('incorrect password');
+    if (!passwordMatches) throw ERROR.InvalidCredentials;
 
     const { userId } = userCredentials;
     const token = await generateToken(userId);
@@ -42,7 +43,7 @@ export const validateUser = async rawToken => {
     const token = rawToken.split(' ').pop();
     await verifyToken(token);
   } catch (error) {
-    throw error;
+    throw error.name === errorType.TOKEN_EXPIRED_ERROR ? ERROR.InvalidSession : ERROR.InvalidToken;
   }
 };
 
