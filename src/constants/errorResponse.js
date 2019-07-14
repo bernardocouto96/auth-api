@@ -28,5 +28,10 @@ export default {
     name: 'DuplicatedEmailError',
     status: 409,
     message: 'Email already exists'
+  },
+  UnauthorizedOnDb: {
+    name: 'UnauthorizedOnDbError',
+    status: 401,
+    message: 'Db user not allowed to update'
   }
 };

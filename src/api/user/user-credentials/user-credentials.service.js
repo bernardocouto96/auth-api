@@ -17,7 +17,9 @@ export const signUpUser = async ({ email, password }) => {
 
     return { userId, token };
   } catch (error) {
-    throw error.code === errorType.DUPLICATED_ERROR_CODE ? ERROR.DuplicatedEmail : error;
+    if (error.code === errorType.DUPLICATED_ERROR_CODE) throw ERROR.DuplicatedEmail;
+    if (error.code === errorType.UNAUTHORIZED_ON_DB_CODE) throw ERROR.UnauthorizedOnDb;
+    throw error;
   }
 };
 
