@@ -33,5 +33,10 @@ export default {
     name: 'UnauthorizedOnDbError',
     status: 401,
     message: 'Db user not allowed to update'
+  },
+  UserNotFound: {
+    name: 'UserNotFoundError',
+    status: 404,
+    message: 'No user found with that ID'
   }
 };

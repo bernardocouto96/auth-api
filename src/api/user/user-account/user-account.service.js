@@ -1,4 +1,5 @@
 import { saveNewUserAccount, updateByUserId, findUserByUserId } from './user-account.repository';
+import ERROR from '../../../constants/errorResponse';
 
 export const createUserAccount = async userAccount => {
   try {
@@ -13,6 +14,9 @@ export const createUserAccount = async userAccount => {
 export const getUserAccount = async userId => {
   try {
     const response = await findUserByUserId(userId);
+
+    if (!Boolean(response)) throw ERROR.UserNotFound;
+
     await updateLoginDate(userId);
 
     return response;
