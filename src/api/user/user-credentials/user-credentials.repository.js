@@ -5,4 +5,4 @@ export const saveNewUserCredentials = userCredentials => {
   return newUserCredentials.save();
 };
 
-export const findUserByLogin = login => UserCredentialsModel.findOne({ login });
+export const findUserByLogin = ({ login }) => UserCredentialsModel.findOne({ login });
