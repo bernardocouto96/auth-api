@@ -9,7 +9,7 @@ export const signUp = async (req, res, next) => {
     const { body } = req;
     const isValidRequest = validateSignUpFields(body);
 
-    if (!isValidRequest) throw ERROR.MissingAuthorizationToken;
+    if (!isValidRequest) throw ERROR.MissingRequiredFields;
 
     const { userId, token } = await signUpUser(body);
     const { createdAt, updatedAt, lastLoginDate } = await createUserAccount({ userId, ...body });
