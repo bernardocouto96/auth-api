@@ -2,7 +2,7 @@
 
 A simple authentication Node API.
 
-Deployed URL: https://auth-api-node.herokuapp.com/
+Deployed API URL: https://auth-api-node.herokuapp.com/
 
 ## Installation
 
